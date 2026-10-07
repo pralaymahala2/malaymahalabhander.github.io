@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout - Malay Mahala Bhander</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f5f7f6;
+    color:#222;
+}
+
+/* HEADER */
+
+header{
+    background:#0b7a4b;
+    color:white;
+    text-align:center;
+    padding:22px 15px;
+}
+
+header h1{
+    margin:0;
+    font-size:25px;
+}
+
+header p{
+    margin:7px 0 0;
+}
+
+/* NAV */
+
+nav{
+    background:#075c39;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:5px;
+    padding:10px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:8px 13px;
+    border-radius:5px;
+}
+
+nav a:hover{
+    background:#0b7a4b;
+}
+
+/* MAIN */
+
+.checkout-container{
+    max-width:1100px;
+    margin:35px auto;
+    padding:0 15px;
+}
+
+.checkout-title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.checkout-title h2{
+    color:#0b7a4b;
+    margin-bottom:5px;
+}
+
+.checkout-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+/* BOX */
+
+.checkout-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+}
+
+.checkout-box h3{
+    margin-top:0;
+    color:#0b7a4b;
+    border-bottom:1px solid #ddd;
+    padding-bottom:12px;
+}
+
+/* FORM */
+
+.form-group{
+    margin-bottom:17px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    font-size:15px;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+/* PAYMENT */
+
+.payment-option{
+    border:2px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:12px;
+    cursor:pointer;
+}
+
+.payment-option:hover{
+    border-color:#0b7a4b;
+}
+
+.payment-option label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.payment-option input{
+    width:18px;
+    height:18px;
+}
+
+/* UPI */
+
+.upi-box{
+    display:none;
+    margin-top:15px;
+    padding:20px;
+    background:#f0fff8;
+    border:2px solid #0b7a4b;
+    border-radius:12px;
+    text-align:center;
+}
+
+.upi-box.show{
+    display:block;
+}
+
+.upi-box h4{
+    margin-top:0;
+    color:#0b7a4b;
+    font-size:19px;
+}
+
+.upi-amount{
+    font-size:25px;
+    font-weight:bold;
+    color:#111;
+    margin:10px 0;
+}
+
+#qrcode{
+    width:220px;
+    min-height:220px;
+    margin:18px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:white;
+    padding:10px;
+    border-radius:10px;
+}
+
+.upi-id{
+    font-size:14px;
+    margin:10px 0;
+    word-break:break-all;
+}
+
+.copy-btn{
+    border:none;
+    background:#075c39;
+    color:white;
+    padding:9px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-bottom:12px;
+}
+
+.pay-button{
+    display:inline-block;
+    background:#0b7a4b;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:7px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.paid-button{
+    display:none;
+    background:#ff9800;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:12px;
+}
+
+.paid-button.show{
+    display:inline-block;
+}
+
+.paid-status{
+    display:none;
+    color:#087443;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+.paid-status.show{
+    display:block;
+}
+
+/* SUMMARY */
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+.summary-total{
+    display:flex;
+    justify-content:space-between;
+    font-size:22px;
+    font-weight:bold;
+    color:#0b7a4b;
+    padding-top:18px;
+}
+
+/* BUTTON */
+
+.place-order-btn{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    background:#0b7a4b;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.place-order-btn:hover{
+    background:#075c39;
+}
+
+/* CONFIRMATION */
+
+.confirmation{
+    display:none;
+    max-width:650px;
+    margin:50px auto;
+    background:white;
+    padding:35px 25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 25px rgba(0,0,0,0.1);
+}
+
+.confirmation.show{
+    display:block;
+}
+
+.confirmation-icon{
+    font-size:60px;
+}
+
+.confirmation h2{
+    color:#0b7a4b;
+}
+
+.order-id{
+    background:#f1f1f1;
+    padding:12px;
+    border-radius:7px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.home-btn{
+    display:inline-block;
+    background:#0b7a4b;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:7px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#075c39;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    margin-top:40px;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+    .checkout-grid{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:20px;
+    }
+
+    .checkout-box{
+        padding:18px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛒 আমাদের Grocery Store Malay Mahala Bhander</h1>
+    <p>Fresh • Quality • Trusted</p>
+</header>
+
+<nav>
+    <a href="index.html#home">Home</a>
+    <a href="index.html#categories">Categories</a>
+    <a href="index.html#products">Products</a>
+    <a href="index.html#offers">Offers</a>
+    <a href="index.html#about">About Us</a>
+    <a href="index.html#contact">Contact</a>
+</nav>
+
+
+<!-- CHECKOUT -->
+
+<div class="checkout-container" id="checkoutSection">
+
+    <div class="checkout-title">
+        <h2>🛒 Checkout</h2>
+        <p>Enter your details and complete your order.</p>
+    </div>
+
+
+    <div class="checkout-grid">
+
+        <!-- CUSTOMER DETAILS -->
+
+        <div>
+
+            <div class="checkout-box">
+
+                <h3>📦 Delivery Details</h3>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter your full name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        maxlength="10"
+                        placeholder="Enter 10-digit mobile number"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>PIN Code</label>
+                    <input
+                        type="text"
+                        id="customerPin"
+                        maxlength="6"
+                        placeholder="Enter 6-digit PIN"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <textarea
+                        id="customerAddress"
+                        placeholder="Enter your complete delivery address"
+                    ></textarea>
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT -->
+
+            <div class="checkout-box">
+
+                <h3>💳 Payment Method</h3>
+
+                <div class="payment-option">
+                    <label>
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="COD"
+                            checked
+                        >
+                        💵 Cash on Delivery
+                    </label>
+                </div>
+
+
+                <div class="payment-option">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="UPI"
+                        >
+                        📱 Pay Online via UPI
+                    </label>
+
+                </div>
+
+
+                <!-- UPI BOX -->
+
+                <div class="upi-box" id="upiBox">
+
+                    <h4>📱 Pay Online via UPI</h4>
+
+                    <p>
+                        Order amount will be automatically added
+                        to the payment.
+                    </p>
+
+                    <div class="upi-amount">
+                        Amount: ₹<span id="upiAmount">0</span>
+                    </div>
+
+
+                    <!-- QR CODE -->
+
+                    <div id="qrcode"></div>
+
+                    <p>
+                        📷 Scan this QR code using
+                        Google Pay / PhonePe / Paytm
+                    </p>
+
+
+                    <div class="upi-id">
+                        <strong>UPI ID:</strong>
+                        <span id="upiIdText">
+                            paytm.s255048@pty
+                        </span>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="copy-btn"
+                        onclick="copyUPI()"
+                    >
+                        📋 Copy UPI ID
+                    </button>
+
+                    <br>
+
+
+                    <!-- UPI DEEP LINK -->
+
+                    <a
+                        href="#"
+                        id="payUPIButton"
+                        class="pay-button"
+                    >
+                        📱 Pay ₹0 via UPI
+                    </a>
+
+
+                    <br>
+
+
+                    <button
+                        type="button"
+                        id="paidButton"
+                        class="paid-button"
+                        onclick="markUPIPaid()"
+                    >
+                        ✓ I Have Paid
+                    </button>
+
+
+                    <div
+                        id="paidStatus"
+                        class="paid-status"
+                    >
+                        ✓ UPI payment marked as completed
+                    </div>
+
+                    <p style="font-size:12px;color:#666;">
+                        Payment status is not automatically verified
+                        by this website.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div>
+
+            <div class="checkout-box">
+
+                <h3>🧾 Order Summary</h3>
+
+                <div class="summary-row">
+                    <span>Items</span>
+                    <strong id="summaryItems">0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery</span>
+                    <strong>Free</strong>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>₹<span id="orderTotal">0</span></span>
+                </div>
+
+
+                <button
+                    class="place-order-btn"
+                    onclick="placeOrder()"
+                >
+                    🛒 Place Order
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CONFIRMATION -->
+
+<div
+    class="confirmation"
+    id="confirmationSection"
+>
+
+    <div class="confirmation-icon">
+        🎉
+    </div>
+
+    <h2>Order Confirmed!</h2>
+
+    <p>
+        Thank you for ordering from
+        <strong>Malay Mahala Bhander</strong>.
+    </p>
+
+    <div class="order-id">
+        Order ID:
+        <span id="confirmedOrderId"></span>
+    </div>
+
+    <p id="confirmationPayment"></p>
+
+    <p>
+        🚚 Your order is being prepared.
+    </p>
+
+    <a
+        href="index.html"
+        class="home-btn"
+    >
+        ← Back to Home
+    </a>
+
+</div>
+
+
+<footer>
+
+    <p>
+        © 2026 Malay Mahala Bhander
+    </p>
+
+    <p>
+        Made by Pralay Mahala
+    </p>
+
+</footer>
+
+
+<!-- QR CODE LIBRARY -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<script>
+
+/* =========================
+   CART
+========================= */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("groceryCart")
+    ) || [];
+
+
+/* =========================
+   UPI DETAILS
+========================= */
+
+const UPI_ID =
+    "paytm.s255048@pty";
+
+const UPI_NAME =
+    "Malay Mahala";
+
+
+let orderTotal = 0;
+
+let upiPaymentConfirmed = false;
+
+
+/* =========================
+   GROUP CART
+========================= */
+
+function getGroupedCart(){
+
+    const grouped = {};
+
+    cart.forEach(function(item){
+
+        if(!grouped[item.id]){
+
+            grouped[item.id] = {
+                id:item.id,
+                name:item.name,
+                quantity:item.quantity,
+                price:Number(item.price),
+                count:1
+            };
+
+        }else{
+
+            grouped[item.id].count++;
+
+        }
+
+    });
+
+    return Object.values(grouped);
+}
+
+
+/* =========================
+   CALCULATE TOTAL
+========================= */
+
+function calculateTotal(){
+
+    const items =
+        getGroupedCart();
+
+    let total = 0;
+    let quantity = 0;
+
+    items.forEach(function(item){
+
+        total +=
+            item.price * item.count;
+
+        quantity +=
+            item.count;
+
+    });
+
+    return {
+        total:total,
+        quantity:quantity
+    };
+
+}
+
+
+/* =========================
+   SHOW CHECKOUT
+========================= */
+
+function displayCheckout(){
+
+    if(cart.length === 0){
+
+        alert("Your cart is empty!");
+
+        window.location.href =
+            "index.html#products";
+
+        return;
+
+    }
+
+
+    const result =
+        calculateTotal();
+
+
+    orderTotal =
+        result.total;
+
+
+    document.getElementById(
+        "orderTotal"
+    ).textContent =
+        result.total;
+
+
+    document.getElementById(
+        "summaryItems"
+    ).textContent =
+        result.quantity;
+
+}
+
+
+/* =========================
+   UPI QR
+========================= */
+
+function generateUPI(){
+
+    const amount =
+        Number(orderTotal);
+
+
+    if(!amount || amount <= 0){
+        return;
+    }
+
+
+    /*
+       UPI PAYMENT STRING
+
+       Amount is included inside QR.
+    */
+
+    const upiURL =
+        "upi://pay" +
+        "?pa=" +
+        encodeURIComponent(UPI_ID) +
+        "&pn=" +
+        encodeURIComponent(UPI_NAME) +
+        "&am=" +
+        encodeURIComponent(
+            amount.toFixed(2)
+        ) +
+        "&cu=INR";
+
+
+    /*
+       Update amount
+    */
+
+    document.getElementById(
+        "upiAmount"
+    ).textContent =
+        amount;
+
+
+    document.getElementById(
+        "payUPIButton"
+    ).textContent =
+        "📱 Pay ₹" +
+        amount +
+        " via UPI";
+
+
+    /*
+       Update Pay button
+    */
+
+    document.getElementById(
+        "payUPIButton"
+    ).href =
+        upiURL;
+
+
+    /*
+       Clear old QR
+    */
+
+    const qr =
+        document.getElementById(
+            "qrcode"
+        );
+
+    qr.innerHTML = "";
+
+
+    /*
+       Generate new QR
+    */
+
+    new QRCode(
+        qr,
+        {
+            text:upiURL,
+            width:200,
+            height:200,
+            correctLevel:
+                QRCode.CorrectLevel.H
+        }
+    );
+
+}
+
+
+/* =========================
+   PAYMENT CHANGE
+========================= */
+
+document
+.querySelectorAll(
+    'input[name="payment"]'
+)
+.forEach(function(radio){
+
+    radio.addEventListener(
+        "change",
+        function(){
+
+            const upiBox =
+                document.getElementById(
+                    "upiBox"
+                );
+
+
+            if(this.value === "UPI"){
+
+                upiBox.classList.add(
+                    "show"
+                );
+
+                upiPaymentConfirmed =
+                    false;
+
+                document.getElementById(
+                    "paidButton"
+                ).classList.add(
+                    "show"
+                );
+
+                document.getElementById(
+                    "paidStatus"
+                ).classList.remove(
+                    "show"
+                );
+
+                generateUPI();
+
+            }else{
+
+                upiBox.classList.remove(
+                    "show"
+                );
+
+                upiPaymentConfirmed =
+                    false;
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================
+   COPY UPI
+========================= */
+
+function copyUPI(){
+
+    navigator.clipboard
+    .writeText(UPI_ID)
+    .then(function(){
+
+        alert(
+            "✅ UPI ID copied!\n\n" +
+            UPI_ID
+        );
+
+    })
+    .catch(function(){
+
+        alert(
+            "UPI ID:\n" +
+            UPI_ID
+        );
+
+    });
+
+}
+
+
+/* =========================
+   MARK UPI PAID
+========================= */
+
+function markUPIPaid(){
+
+    upiPaymentConfirmed =
+        true;
+
+
+    const button =
+        document.getElementById(
+            "paidButton"
+        );
+
+
+    button.textContent =
+        "✓ Payment Marked";
+
+
+    button.disabled =
+        true;
+
+
+    button.style.opacity =
+        "0.7";
+
+
+    document.getElementById(
+        "paidStatus"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   PLACE ORDER
+========================= */
+
+function placeOrder(){
+
+    if(cart.length === 0){
+
+        alert(
+            "Your cart is empty!"
+        );
+
+        return;
+
+    }
+
+
+    const name =
+        document
+        .getElementById(
+            "customerName"
+        )
+        .value
+        .trim();
+
+
+    const phone =
+        document
+        .getElementById(
+            "customerPhone"
+        )
+        .value
+        .trim();
+
+
+    const pin =
+        document
+        .getElementById(
+            "customerPin"
+        )
+        .value
+        .trim();
+
+
+    const address =
+        document
+        .getElementById(
+            "customerAddress"
+        )
+        .value
+        .trim();
+
+
+    /* NAME */
+
+    if(name === ""){
+
+        alert(
+            "Please enter your name."
+        );
+
+        return;
+
+    }
+
+
+    /* PHONE */
+
+    if(!/^[0-9]{10}$/.test(phone)){
+
+        alert(
+            "Please enter a valid 10-digit mobile number."
+        );
+
+        return;
+
+    }
+
+
+    /* PIN */
+
+    if(!/^[0-9]{6}$/.test(pin)){
+
+        alert(
+            "Please enter a valid 6-digit PIN code."
+        );
+
+        return;
+
+    }
+
+
+    /* ADDRESS */
+
+    if(address === ""){
+
+        alert(
+            "Please enter your delivery address."
+        );
+
+        return;
+
+    }
+
+
+    /* PAYMENT */
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        ).value;
+
+
+    /*
+       UPI PAYMENT CHECK
+
+       No popup.
+    */
+
+    if(
+        payment === "UPI" &&
+        !upiPaymentConfirmed
+    ){
+
+        alert(
+            "Please complete the UPI payment and click 'I Have Paid'."
+        );
+
+        return;
+
+    }
+
+
+    /* ORDER ID */
+
+    const orderId =
+        "BCM" +
+        String(
+            Date.now()
+        ).slice(-6);
+
+
+    /* SAVE ORDER */
+
+    const orderData = {
+
+        orderId:orderId,
+
+        name:name,
+
+        phone:phone,
+
+        pin:pin,
+
+        address:address,
+
+        payment:payment,
+
+        total:orderTotal,
+
+        date:new Date().toLocaleString(),
+
+        items:cart
+
+    };
+
+
+    localStorage.setItem(
+        "lastOrder",
+        JSON.stringify(
+            orderData
+        )
+    );
+
+
+    /* CLEAR CART */
+
+    localStorage.removeItem(
+        "groceryCart"
+    );
+
+    cart = [];
+
+
+    /* SHOW CONFIRMATION */
+
+    document
+    .getElementById(
+        "checkoutSection"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "confirmationSection"
+    )
+    .classList.add(
+        "show"
+    );
+
+
+    document
+    .getElementById(
+        "confirmedOrderId"
+    )
+    .textContent =
+        orderId;
+
+
+    const paymentText =
+        document.getElementById(
+            "confirmationPayment"
+        );
+
+
+    if(payment === "UPI"){
+
+        paymentText.innerHTML =
+            "📱 Payment Method: <strong>UPI</strong><br>" +
+            "💰 Amount: <strong>₹" +
+            orderTotal +
+            "</strong>";
+
+    }else{
+
+        paymentText.innerHTML =
+            "💵 Payment Method: <strong>Cash on Delivery</strong><br>" +
+            "💰 Amount: <strong>₹" +
+            orderTotal +
+            "</strong>";
+
+    }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+displayCheckout();
+
+</script>
+
+</body>
+</html>

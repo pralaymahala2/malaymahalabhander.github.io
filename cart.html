@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart - আমাদের Grocery Store</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <style>
+
+/* =====================================================
+   CART PAGE
+===================================================== */
+
+.cart-page {
+
+    min-height: 75vh;
+
+    padding: 45px 7% 60px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4faf7,
+            #ffffff
+        );
+
+}
+
+
+/* =========================
+   CART HEADER
+========================= */
+
+.cart-heading {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+
+.cart-heading h2 {
+
+    font-size: 36px;
+
+    color: #07563f;
+
+    margin-bottom: 8px;
+
+}
+
+
+.cart-heading p {
+
+    color: #666;
+
+    font-size: 15px;
+
+}
+
+
+/* =========================
+   CART LAYOUT
+========================= */
+
+.cart-container {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 330px;
+
+    gap: 25px;
+
+}
+
+
+/* =========================
+   CART ITEMS BOX
+========================= */
+
+.cart-items-box {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,0.08);
+
+}
+
+
+.cart-items-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+    padding-bottom: 15px;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.cart-items-title h3 {
+
+    color: #07563f;
+
+    margin: 0;
+
+}
+
+
+.cart-items-title span {
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================
+   CART ITEM
+========================= */
+
+.cart-item {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 18px 5px;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.cart-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.cart-product-info {
+
+    flex: 1;
+
+}
+
+
+.cart-product-info h4 {
+
+    margin: 0 0 5px;
+
+    font-size: 17px;
+
+    color: #222;
+
+}
+
+
+.cart-product-info p {
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.cart-product-price {
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    color: #07563f;
+
+    min-width: 70px;
+
+    text-align: right;
+
+}
+
+
+/* =========================
+   QUANTITY
+========================= */
+
+.quantity-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.quantity-box button {
+
+    width: 30px;
+
+    height: 30px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eaf6f1;
+
+    color: #07563f;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.quantity-box button:hover {
+
+    background: #07563f;
+
+    color: white;
+
+}
+
+
+.quantity-box span {
+
+    min-width: 22px;
+
+    text-align: center;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================
+   REMOVE BUTTON
+========================= */
+
+.remove-btn {
+
+    border: none;
+
+    background: #fff0f0;
+
+    color: #e53935;
+
+    padding: 8px 10px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+}
+
+
+.remove-btn:hover {
+
+    background: #e53935;
+
+    color: white;
+
+}
+
+
+/* =========================
+   SUMMARY
+========================= */
+
+.cart-summary {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    height: fit-content;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,0.08);
+
+    position: sticky;
+
+    top: 20px;
+
+}
+
+
+.cart-summary h3 {
+
+    margin-top: 0;
+
+    color: #07563f;
+
+    font-size: 22px;
+
+    padding-bottom: 15px;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.summary-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 16px 0;
+
+    color: #555;
+
+}
+
+
+.summary-total {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 20px;
+
+    padding-top: 18px;
+
+    border-top:
+        2px solid #eeeeee;
+
+    font-size: 21px;
+
+    font-weight: 900;
+
+    color: #07563f;
+
+}
+
+
+/* =========================
+   CHECKOUT BUTTON
+========================= */
+
+.checkout-btn {
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #07563f;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+.checkout-btn:hover {
+
+    background: #064b37;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================
+   CONTINUE SHOPPING
+========================= */
+
+.continue-shopping {
+
+    display: block;
+
+    text-align: center;
+
+    margin-top: 14px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #eef8f4;
+
+    color: #07563f;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+}
+
+
+.continue-shopping:hover {
+
+    background: #dcefe8;
+
+}
+
+
+/* =========================
+   CLEAR CART
+========================= */
+
+.clear-cart-btn {
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 11px;
+
+    border: 1px solid #e53935;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #e53935;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.clear-cart-btn:hover {
+
+    background: #fff0f0;
+
+}
+
+
+/* =========================
+   EMPTY CART
+========================= */
+
+.empty-cart {
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+}
+
+
+.empty-cart .empty-icon {
+
+    font-size: 55px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.empty-cart h3 {
+
+    color: #07563f;
+
+    font-size: 24px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.empty-cart p {
+
+    color: #777;
+
+    margin-bottom: 22px;
+
+}
+
+
+.empty-cart a {
+
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    background: #07563f;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .cart-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .cart-summary {
+
+        position: static;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .cart-page {
+
+        padding: 30px 4% 45px;
+
+    }
+
+
+    .cart-heading h2 {
+
+        font-size: 28px;
+
+    }
+
+
+    .cart-items-box {
+
+        padding: 15px;
+
+    }
+
+
+    .cart-item {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .cart-product-info {
+
+        width: 100%;
+
+        flex: auto;
+
+    }
+
+
+    .cart-product-price {
+
+        text-align: left;
+
+    }
+
+
+    .cart-summary {
+
+        padding: 20px;
+
+    }
+
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <h1>🛒 আমাদের Grocery Store</h1>
+
+    <p>Fresh • Quality • Trusted</p>
+
+</header>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+    <a href="index.html">Home</a>
+
+    <a href="index.html#categories">
+        Categories
+    </a>
+
+    <a href="index.html#products">
+        Products
+    </a>
+
+    <a href="index.html#offers">
+        Offers
+    </a>
+
+    <a href="index.html#about">
+        About Us
+    </a>
+
+    <a href="index.html#contact">
+        Contact
+    </a>
+
+</nav>
+
+
+<!-- =====================================================
+     CART PAGE
+===================================================== -->
+
+<main>
+
+<section class="cart-page">
+
+
+    <!-- CART HEADING -->
+
+    <div class="cart-heading">
+
+        <h2>
+            🛒 Your Shopping Cart
+        </h2>
+
+        <p>
+            Review your selected grocery items
+        </p>
+
+    </div>
+
+
+    <!-- CART CONTAINER -->
+
+    <div class="cart-container">
+
+
+        <!-- =============================================
+             CART ITEMS
+        ============================================== -->
+
+        <div class="cart-items-box">
+
+            <div class="cart-items-title">
+
+                <h3>
+                    Your Items
+                </h3>
+
+                <span id="itemCount">
+                    0 items
+                </span>
+
+            </div>
+
+
+            <div id="cartItems">
+
+                <!-- Items will appear here -->
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             ORDER SUMMARY
+        ============================================== -->
+
+        <div class="cart-summary">
+
+            <h3>
+                Order Summary
+            </h3>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Items
+                </span>
+
+                <strong id="summaryItems">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Delivery
+                </span>
+
+                <strong>
+                    FREE
+                </strong>
+
+            </div>
+
+
+            <div class="summary-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="cartTotal">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <button
+                class="checkout-btn"
+                onclick="checkout()">
+
+                Proceed to Checkout
+
+            </button>
+
+
+            <a
+                href="index.html#products"
+                class="continue-shopping">
+
+                ← Continue Shopping
+
+            </a>
+
+
+            <button
+                class="clear-cart-btn"
+                onclick="clearCart()">
+
+                🗑️ Clear Cart
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <h3>
+        🛒 আমাদের Grocery Store
+    </h3>
+
+    <p>
+        Fresh • Quality • Trusted
+    </p>
+
+    <p>
+        © 2026 All Rights Reserved
+    </p>
+
+    <p>
+        Made by Pralay Mahala
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     CART JAVASCRIPT
+===================================================== -->
+
+				<script>
+
+/* =========================
+   CART DATA
+========================= */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("groceryCart")
+    ) || [];
+
+
+/* =========================
+   SAVE CART
+========================= */
+
+function saveCart() {
+
+    localStorage.setItem(
+        "groceryCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+/* =========================
+   DISPLAY CART
+========================= */
+
+function displayCart() {
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+    const itemCount =
+        document.getElementById("itemCount");
+
+    const summaryItems =
+        document.getElementById("summaryItems");
+
+
+    /* =========================
+       GROUP SAME PRODUCTS
+    ========================= */
+
+    const groupedCart = {};
+
+
+    cart.forEach(function(item) {
+
+        if (!groupedCart[item.id]) {
+
+            groupedCart[item.id] = {
+
+                id: item.id,
+
+                name: item.name,
+
+                quantity: item.quantity,
+
+                price: item.price,
+
+                count: 1
+
+            };
+
+        } else {
+
+            groupedCart[item.id].count++;
+
+        }
+
+    });
+
+
+    const items =
+        Object.values(groupedCart);
+
+
+    /* =========================
+       EMPTY CART
+    ========================= */
+
+    if (items.length === 0) {
+
+        cartItems.innerHTML = `
+
+            <div class="empty-cart">
+
+                <div class="empty-icon">
+                    🛒
+                </div>
+
+                <h3>
+                    Your Cart is Empty
+                </h3>
+
+                <p>
+                    Looks like you haven't
+                    added anything yet.
+                </p>
+
+                <a href="index.html#products">
+                    Start Shopping
+                </a>
+
+            </div>
+
+        `;
+
+
+        cartTotal.textContent = "₹0";
+
+        itemCount.textContent = "0 items";
+
+        summaryItems.textContent = "0";
+
+        return;
+
+    }
+
+
+    /* =========================
+       CALCULATE TOTAL
+    ========================= */
+
+    let total = 0;
+
+    let totalQuantity = 0;
+
+
+    cartItems.innerHTML = "";
+
+
+    /* =========================
+       DISPLAY PRODUCTS
+    ========================= */
+
+    items.forEach(function(item) {
+
+        const itemTotal =
+            item.price * item.count;
+
+
+        total += itemTotal;
+
+        totalQuantity += item.count;
+
+
+        const div =
+            document.createElement("div");
+
+
+        div.className =
+            "cart-item";
+
+
+        div.innerHTML = `
+
+            <div class="cart-product-info">
+
+                <h4>
+                    ${item.name}
+                </h4>
+
+                <p>
+                    ${item.quantity}
+                </p>
+
+            </div>
+
+
+            <div class="quantity-box">
+
+                <button
+                    onclick="decreaseQuantity(${item.id})">
+                    −
+                </button>
+
+
+                <span>
+                    ${item.count}
+                </span>
+
+
+                <button
+                    onclick="increaseQuantity(${item.id})">
+                    +
+                </button>
+
+            </div>
+
+
+            <div class="cart-product-price">
+
+                ₹${itemTotal}
+
+            </div>
+
+
+            <button
+                class="remove-btn"
+                onclick="removeProduct(${item.id})">
+
+                🗑️
+
+            </button>
+
+        `;
+
+
+        cartItems.appendChild(div);
+
+    });
+
+
+    /* =========================
+       UPDATE SUMMARY
+    ========================= */
+
+    cartTotal.textContent =
+        "₹" + total;
+
+
+    itemCount.textContent =
+        totalQuantity +
+        (totalQuantity === 1
+            ? " item"
+            : " items");
+
+
+    summaryItems.textContent =
+        totalQuantity;
+
+}
+
+
+/* =========================
+   INCREASE QUANTITY
+========================= */
+
+function increaseQuantity(productId) {
+
+    const product =
+        cart.find(
+            item => item.id === productId
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    /*
+       একই product আবার
+       আলাদা row না হয়ে
+       quantity বাড়বে
+    */
+
+    cart.push({
+        ...product
+    });
+
+
+    saveCart();
+
+    displayCart();
+
+}
+
+
+/* =========================
+   DECREASE QUANTITY
+========================= */
+
+function decreaseQuantity(productId) {
+
+    const index =
+        cart.findIndex(
+            item => item.id === productId
+        );
+
+
+    if (index === -1) {
+        return;
+    }
+
+
+    /*
+       একটি quantity কমানো
+    */
+
+    cart.splice(index, 1);
+
+
+    saveCart();
+
+    displayCart();
+
+}
+
+
+/* =========================
+   REMOVE COMPLETE PRODUCT
+========================= */
+
+function removeProduct(productId) {
+
+    cart =
+        cart.filter(
+            item => item.id !== productId
+        );
+
+
+    saveCart();
+
+    displayCart();
+
+}
+
+
+/* =========================
+   CLEAR CART
+========================= */
+
+function clearCart() {
+
+    cart = [];
+
+
+    saveCart();
+
+    displayCart();
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+function checkout() {
+
+    if (cart.length === 0) {
+
+        alert(
+            "Your cart is empty!"
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "checkout.html";
+
+}
+
+
+/* =========================
+   LOAD CART
+========================= */
+
+displayCart();
+
+</script>
+
+
+</body>
+
+</html>
