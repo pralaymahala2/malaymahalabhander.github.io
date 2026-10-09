@@ -15,7 +15,7 @@ const defaultProducts = [
         quantity: "5 KG",
         price: 75,
         category: "Vegetables",
-        image: "images/potato.jpg",
+        image: "potato.jpg",
         available: true
     },
     {
@@ -24,7 +24,7 @@ const defaultProducts = [
         quantity: "1 Litre",
         price: 135,
         category: "Oil & Spices",
-        image: "images/oil.jpg",
+        image: "oil.jpg",
         available: true
     },
     {
@@ -33,7 +33,7 @@ const defaultProducts = [
         quantity: "1 KG",
         price: 165,
         category: "Rice & Dal",
-        image: "images/dal.jpg",
+        image: "dal.jpg",
         available: true
     },
     {
@@ -42,7 +42,7 @@ const defaultProducts = [
         quantity: "1 KG",
         price: 30,
         category: "Oil & Spices",
-        image: "images/salt.jpg",
+        image: "salt.jpg",
         available: true
     },
     {
@@ -51,7 +51,7 @@ const defaultProducts = [
         quantity: "Small Pack",
         price: 10,
         category: "Biscuits & Snacks",
-        image: "images/parleg_e.png",
+        image: "parleg_e.png",
         available: true
     },
     {
@@ -60,7 +60,7 @@ const defaultProducts = [
         quantity: "2.250 Litre",
         price: 99,
         category: "Beverages",
-        image: "images/sprite.png",
+        image: "sprite.png",
         available: true
     }
 ];
